@@ -11,11 +11,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+      @user = User.find(params[:id])
   end
 
   # GET /users/new
   def new
-    @user = User.new
   end
 
   # GET /users/1/edit
@@ -25,7 +25,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    #complete this method
+      @user = User.new (user_params)
+      if @user.save
+          flash[:notice] = "SUCCESS"
+          redirect_to root_url
+      else 
+          flash[:alert] = "ERROR"
+          render "new"
+      end
   end
 
   # PATCH/PUT /users/1

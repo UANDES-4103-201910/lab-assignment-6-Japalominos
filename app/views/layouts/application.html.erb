@@ -10,6 +10,17 @@
 
   <body>
   	<p id="notice"><%= notice %></p>
-    <%= yield %>
+    <div id='main' class='container'>
+        <div class='row'>
+            <div class='col-md-8 col-md-offset-2'>
+                <% flash.each do |name, msg| %>
+                  <div class='alert alert-<%= name %>'>
+                    <%= msg %>
+                  </div>
+                <% end %>    
+                <%= yield %>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
